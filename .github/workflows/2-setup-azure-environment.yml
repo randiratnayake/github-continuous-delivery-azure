@@ -75,13 +75,13 @@ jobs:
       - name: Merge Pull Request
         run: gh pr merge --squash staging-workflow
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
 
       # Create pull request from azure-configuration branch to set up next step
       - name: Create azure-configuration pull request 
         run: ./.github/script/create-workflow-pr.sh
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
           PR_BRANCH: azure-configuration
           PR_TITLE: 'Added spinup-destroy.yml workflow'
 
@@ -91,6 +91,6 @@ jobs:
       - name: Update to step 3
         run: ./.github/script/update-step.sh
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
           FROM_STEP: 2
           TO_STEP: 3
